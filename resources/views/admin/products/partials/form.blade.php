@@ -3,10 +3,10 @@
             {{ Form::label('commerce_id', 'Commerce') }}
             {{ Form::select('commerce_id', $commerces, null, ['class' => 'form-control']) }}
         </div> 
-        <!--div class="form-group">
-                {*{ Form::label('department_id', 'Department') }}
-                {*{ Form::select('department_id', $departments, null, ['class' => 'form-control']) }}
-            </div--> 
+        <div class="form-group">
+                {{ Form::label('department_id', 'Department') }}
+                {{ Form::select('department_id', $departments, null, ['class' => 'form-control']) }}
+            </div> 
            
             <div class="form-group">
                     {{ Form::label('category_id', 'Category') }}

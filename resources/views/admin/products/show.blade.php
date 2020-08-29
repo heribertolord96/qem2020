@@ -30,14 +30,13 @@
                                                 </tr>
                                                     <tr>
                                                             <td><b>Precio:</b></td>
-                                                            <td>{{ $product->precio }}</td>
+                                                            <td>{{ $product->precio_venta }}</td>
                                                     </tr>
                                                     <tr>
                                                             <td><b>Category</b></td>
                                                             <td>
-                                                                {{$product->excerpt}}
-                                                               
-                                                                    {{ $product->category->name }}</a></td>
+                                                                {{$product->excerpt}}                                                               
+                                                                {{ $product->category->name }}</a></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Departamento</b></td>

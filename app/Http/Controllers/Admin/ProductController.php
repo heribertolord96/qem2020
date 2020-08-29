@@ -44,11 +44,11 @@ class ProductController extends Controller
             $criterio = $request->criterio;
             if ($buscar==''){
                 $products=Product::orderBy('pname','ASC')       
-                ->select('products.id as pid','products.name as pname','products.slug as pslug',
+                ->select('products.id','products.name as pname','products.slug as pslug',
                 'products.codigo as pcode','products.descripcion as pdescripcion',
                 'products.stock as pstock','products.file as pfile',
                 'products.presentacion as ppresentacion','products.precio_venta as precio_venta',
-                'products.condition as pcondition',
+                'products.condition as pcondition','commerces.id as commerce_id',
                 'commerces.nombre as cnombre', 'commerces.slug as slug',
                 'departments.name as pdepartment','departments.slug as dslug',
                 'categories.name as pcategory')         
@@ -64,32 +64,49 @@ class ProductController extends Controller
             else
             {
                 $products=Product::orderBy('pname','ASC')       
-                ->select('products.id as pid','products.name as pname','products.slug as pslug',
+                ->select('products.id','products.name as pname','products.slug as pslug',
                 'products.codigo as pcode','products.descripcion as pdescripcion',
                 'products.stock as pstock','products.file as pfile',
                 'products.presentacion as ppresentacion','products.precio_venta as precio_venta',
-                'products.condition as pcondition',
+                'products.condition as pcondition','commerces.id as commerce_id',
                 'commerces.nombre as cnombre', 'commerces.slug as slug',
                 'departments.name as pdepartment','departments.slug as dslug',
                 'categories.name as pcategory')         
             ->join ('categories','categories.id','=','products.category_id')
             ->join ('departments','categories.department_id','=','departments.id')
-            ->join('commerces','departments.commerce_id','=', 'commerces.id')
-                ->where($criterio, 'like', '%'. $buscar . '%')
+            ->join('commerces','departments.commerce_id','=', 'commerces.id')            
+            ->where($criterio, 'like', '%'. $buscar . '%')
         ->paginate(50);
         return view('admin.products.index', compact('products'));
             }
     }  
     public function product_list($commerce_slug, Request $request){
-        $commerce = Commerce::find($commerce_slug);   
-
+        //$commerce = Commerce::find($commerce_slug);   
         $buscar = $request->buscar;
         $commerce_d  = Commerce::where('slug', $commerce_slug)->first();
-        //$commerce    = Commerce::where('id', $commerce_d)->pluck('id')->first();
+        $commerce    = Commerce::get('id', $commerce_slug)->pluck('id')->first();
             $criterio = $request->criterio; 
             if ($buscar==''){
                 $products=Product::orderBy('pname','ASC')       
-                ->select('products.id as pid','products.name as pname','products.slug as pslug',
+                ->select('products.id','products.name as pname','products.slug as pslug',
+                'products.codigo as pcode','products.descripcion as pdescripcion',
+                'products.stock as pstock','products.file as pfile',
+                'products.presentacion as ppresentacion','products.precio_venta as precio_venta',
+                'products.condition as pcondition', 'commerces.id as commerce_id',
+                'commerces.nombre as cnombre', 'commerces.slug as commerce_slug',
+                'departments.name as pdepartment','departments.slug as dslug',
+                'categories.name as pcategory')         
+            ->join ('categories','categories.id','=','products.category_id')
+            ->join ('departments','categories.department_id','=','departments.id')
+            ->join('commerces','departments.commerce_id','=', 'commerces.id')
+            ->where('commerces.slug', $commerce_slug)
+            ->paginate(50);
+            return view('admin.commerce_products.index', compact('products','commerce','commerce_d'));
+            }
+            else
+            {      
+                $products=Product::orderBy('pname','ASC')       
+                ->select('products.id','products.name as pname','products.slug as pslug',
                 'products.codigo as pcode','products.descripcion as pdescripcion',
                 'products.stock as pstock','products.file as pfile',
                 'products.presentacion as ppresentacion','products.precio_venta as precio_venta',
@@ -100,25 +117,10 @@ class ProductController extends Controller
             ->join ('categories','categories.id','=','products.category_id')
             ->join ('departments','categories.department_id','=','departments.id')
             ->join('commerces','departments.commerce_id','=', 'commerces.id')
-            ->where('commerces.id', $commerce)
+            ->where('commerces.slug', $commerce_slug)
+            ->where($criterio, 'like', '%' . $buscar . '%')
             ->paginate(50);
             return view('admin.commerce_products.index', compact('products','commerce','commerce_d'));
-            }
-            else
-            { 
-                $products=Product::orderBy('pname','ASC')       
-                ->select('products.id as pid','products.name as pname','products.slug as pslug',
-                'products.codigo as pcode','products.descripcion as pdescripcion',
-                'products.stock as pstock','products.file as pfile',
-                'products.presentacion as ppresentacion','products.precio_venta as precio_venta',
-                'products.condition as pcondition',
-                'commerces.nombre as cnombre', 'commerces.slug as slug',
-                'departments.name as pdepartment','departments.slug as dslug',
-                'categories.name as pcategory')         
-            ->join ('categories','categories.id','=','products.category_id')
-            ->join ('departments','categories.department_id','=','departments.id')
-            ->join('commerces','departments.commerce_id','=', 'commerces.id')
-            ->paginate(50);return view('admin.products.index', compact('product_list'));
             }
 
     }
@@ -219,7 +221,7 @@ class ProductController extends Controller
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $departments = Department::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags       = Tag::orderBy('nombre', 'ASC')->get();
-        return view('admin.products.create', compact('commerces', 'tags','categories','departaments'));
+        return view('admin.products.create', compact('commerces', 'tags','categories', 'departments'));
     }
 
     /**
@@ -298,7 +300,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id)->delete();
-
         return back()->with('info', 'Eliminado correctamente');
     }
 }

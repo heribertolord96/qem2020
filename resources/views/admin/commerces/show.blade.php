@@ -123,7 +123,7 @@
             @if (Auth::user()->id == $commerce->u_id)
             <a href="{{route('myproducts', $commerce->commerce_slug)}}" class="small-box-footer">Ver... <i class="fa fa-arrow-circle-right"></i></a>
              @else
-            <a href="{{route('product_list', $commerce->slug)}}"
+            <a href="{{route('product_list', $commerce->id)}}"
                 class="small-box-footer">Ver... <i class="fa fa-arrow-circle-right"></i></a>
         
             @endif

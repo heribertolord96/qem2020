@@ -1,4 +1,4 @@
-<header class="main-header">
+
 <nav class="main-header navbar navbar-expand navbar-dark border-bottom  fixed-top">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -100,6 +100,4 @@
       </ul>
     </div>
 </nav>
-</header>
-@include("theme/$theme/aside")
 <!-- /.navbar -->
