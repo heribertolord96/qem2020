@@ -1,5 +1,5 @@
 <template>
-<div class="card">
+<div class="card"> 
     <div class="card-header">
 <li><router-link :to="{name: 'commerces'}">Commerces</router-link></li>
     </div>

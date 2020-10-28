@@ -63,7 +63,7 @@ class CommerceController extends Controller
                     'locations.longitud',
                     'locations.latitud'
                 )
-                ->paginate(3);
+                ->paginate(30);
 
             return view('admin.commerces.index', compact('commerces'));
         } else {
@@ -169,20 +169,7 @@ class CommerceController extends Controller
         return view('admin.commerces.create',  compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     //show  commerces from commerces.index
     public function show($id)
     {
@@ -230,12 +217,7 @@ class CommerceController extends Controller
         $commerce->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $commerce = Commerce::find($id)->delete();
@@ -257,8 +239,8 @@ class CommerceController extends Controller
         $commercelocation->city = $request->city;
         $commercelocation->state = $request->state;
         $commercelocation->country = $request->country;
-        $commercelocation->latitude = $request->latitude;
-        $commercelocation->longitude = $request->longitude;
+        $commercelocation->latitud = $request->latitude;
+        $commercelocation->longitud = $request->longitude;
         $commercelocation->save();
         $commerce = new Commerce();
         $commerce->nombre = $request->nombre;

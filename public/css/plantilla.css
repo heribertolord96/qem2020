@@ -36,18 +36,18 @@
     .flex-container > div {/*Cards*/
       float:center;
     background-color: #f1f1f1;
-   /* width: 250px;
- max-width :271px;
- height: 350px;
-    max-height: 271px;
-   */   
+        width: 250px;
+     max-width :271px;
+      height:auto;
+    /* max-height: 271px; */
+     
     margin:  15px auto ;
     text-align: center;
     line-height: 75px;
     font-size: 30px;    
     border-radius: 9px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-       transition: 0.3s;
+    transition: 0.3s;
     
     }
     .card-stats:hover{
@@ -74,6 +74,15 @@
     height: 60px;
     max-height: 60px;
     margin-bottom: 0px;
+    }
+    .box-footer{
+      background-color: rgba(70, 191, 122, 0.53);
+    font-size: 16px;
+    height: 60px;
+    max-height: 60px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    
     }
     
     .elemento{
@@ -172,6 +181,19 @@
       top:0px;
     text-align: center;
     }
+        
+    .description-block {
+      display: block;
+      margin: 10px 0;
+      text-align: center;
+  }
+  .description-text >p {
+    font-size: 10px;
+  }
+  .widget-user-image{
+
+  }
+    /* =================================================================================================== */
 
     /* width */
 ::-webkit-scrollbar {
@@ -211,15 +233,21 @@
 .containerc {
     position: relative;
     height: 100px;
+    margin-top:100px;
+}
+.productrow{
+  max-height: 350px;
+  box-shadow: 20PX;
 }
 .commercecard{
   width:auto;
   padding: 5px;
-  max-height: 250px;
+  height: auto;
+  
 }
-.commercecard card-footer{
-  max-height: 50px;;
-}
+/* .commercecard > .card-footer{
+  max-height: 50px;
+} */
 .cominfo{
   overflow-y: auto;
   text-align: right;
@@ -232,7 +260,7 @@
     background-color: rgba(0, 0, 0, 1);
     width: 100%;
     height: 20%;
-    text-align: justify;
+    text-align: left;
       line-height: 0.9;
     border-radius: 5px 5px 0px 0px;
 box-shadow: 30px;
@@ -295,7 +323,7 @@ width: 70% 20%;
 
 }
 .dropdown-content > div:hover{
-background-color: rgba(16, 184, 63, 0.44);
+background-color: rgba(54, 16, 190, 0.24);
 }
 
 .tooltipA {

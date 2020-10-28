@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //Schema::DefaultStringLenght(120);
-        View::share('theme','lte');
+       View::share('theme','lte');
+       View::share('template','../../node_modules.admin-lte');
     }
 }
