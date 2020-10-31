@@ -15,7 +15,7 @@ $factory->define(Commerce::class, function (Faker $faker) {
         'hora_cierre' => $faker->time(),
         'num_telefono' => $faker->phoneNumber (),
         'email' => $faker->email(),
-        //'ubicacion_id' => rand(1,50),
+        'ubicacion_id' =>$faker->unique()->numberBetween($min = 1, $max = 50),
         'file' => 'https://www.instagram.com/p/B5aYvlqJ-IQ/?utm_source=ig_web_copy_link',
       ];
 });

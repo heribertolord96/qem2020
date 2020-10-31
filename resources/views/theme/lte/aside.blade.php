@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
-<header class="main-header">
+{{-- <header class="main-header">
     @include("theme/$theme/nav")
-</header>
+</header> --}} @include("theme/$theme/nav")
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!--Inicio-nav-->
 
@@ -31,7 +31,7 @@
                     <span class="right badge badge-info"> {{ session()->get('role_name') }} </span>
                 </div>
             </div>
-        @else
+          @else
             <div class="image">
                 <img src="https://jackmonarch.com/wp-content/uploads/2019/03/BELLA-ARAUJO-2.jpg"
                     class="img-circle elevation-2" alt="User Image">
@@ -55,27 +55,28 @@
                 @include("menu_admin.menu_explorar")
             </ul>
         </nav>
-    @endguest
-    <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-home"></i>
-                    <p>
-                        Inicio
-                        <span class="right badge badge-danger"></span>
-                    </p>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex"></div>
-    <!--menuexplorar></menuexplorar-->
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          @include("menu_admin.menu_explorar")
-      </ul>
-  </nav>
+       @endguest
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Inicio
+                            <span class="right badge badge-danger"></span>
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex"></div>
+            <!--menuexplorar></menuexplorar-->
+            <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @include("menu_admin.menu_explorar")
+            </ul>
+        </nav>
+    </div>
     <!--si->el usuario es....-->
     <!-- Sidebar Menu -->
     <!-- /.sidebar -->

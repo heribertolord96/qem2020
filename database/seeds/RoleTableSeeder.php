@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
+use App\RoleUser;
 
 class RoleTableSeeder extends Seeder
 {
@@ -39,6 +40,9 @@ class RoleTableSeeder extends Seeder
 
            
 //Hacer que, al marcar un permiso especial, se marquen las casillas de los permisos esos
-     
+     RoleUser::create([
+        'user_id'      =>'1',
+        'role_id'      =>'2',
+     ]);
     }
 }
