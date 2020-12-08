@@ -17,6 +17,8 @@ use App\CommerceRoleUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\CommerceStoreRequest;
 use App\Http\Requests\CommerceUpdateRequest;
@@ -229,6 +231,15 @@ class CommerceController extends Controller
 
         $userid = Auth::user()->id;
         //if (!$request->ajax()) return redirect('/');
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',           
+            'description' => 'required',
+            'commerce_slug' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
         //Insertar valores de  negocio
         $commercelocation = new Location();
@@ -241,8 +252,11 @@ class CommerceController extends Controller
         $commercelocation->country = $request->country;
         $commercelocation->latitud = $request->latitude;
         $commercelocation->longitud = $request->longitude;
+
         $commercelocation->save();
+
         $commerce = new Commerce();
+
         $commerce->nombre = $request->nombre;
         $commerce->slug = $request->commerce_slug;
         $commerce->descripcion = $request->descripcion;

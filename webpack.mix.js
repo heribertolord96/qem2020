@@ -5,7 +5,9 @@ const mix = require('laravel-mix');
 /*mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');*/
 
-   mix.styles([       
+   mix.styles([             
+       'node_modules/admin-lte/plugins/chart.js/Chart.min.css',
+
    'resources/plantilla/css/estilo2.css',
     'resources/plantilla/css/cards.css',
     'resources/plantilla/css/w3.css',
@@ -21,8 +23,10 @@ const mix = require('laravel-mix');
 ],'public/css/lte-template.css')
 
 .js([ 
+'node_modules/admin-lte/plugins/sparklines/sparkline.js', 
     'node_modules/admin-lte/dist/js/adminlte.min.js',
     ],'public/js/adminlte.min.js')
+    .js(['node_modules/admin-lte/plugins/jquery/jquery.min.js',],'public/js/jquery.min.js')
 
 
     .scripts([
@@ -30,12 +34,17 @@ const mix = require('laravel-mix');
     ], 'public/js/jquery.nestable.js')
 
     .scripts([
+        'public/assets/pages/scripts/admin/index.js',
+        'public/vendor/stringToSlug/jquery.stringToSlug.min.js',
 
         'resources/plantilla/js/plugins/jquery/jquery.min.js',
         'resources/plantilla/js/plugins/bootstrap/js/bootstrap.bundle.min.js',
         'resources/plantilla/js/plugins/fastclick/fastclick.js',
         'resources/plantilla/css/lte/dist/js/adminlte.min.js',
         'resources/plantilla/lte/dist/js/demo.js',
+
+        'node_modules/admin-lte/plugins/chart.js/Chart.min.js',
+        'plantilla/js/jqery-validation/localization/messages_es.js',
         'resources/plantilla/js/jqery-validation/core.js',
         'resources/plantilla/js/sweetalert.min.js',
         'resources/plantilla/js/toastr.min.js',

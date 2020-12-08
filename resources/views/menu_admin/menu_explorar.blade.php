@@ -1,4 +1,11 @@
-
+<li  class="nav-item">
+   <a href="{{ route('home') }}" class="nav-link">
+      <i class="nav-icon fas fa-home"></i>
+      <p>
+         Inicio
+      </p>
+   </a>
+</li>
      <li class="nav-item menu-open">
          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-list-alt"></i>
