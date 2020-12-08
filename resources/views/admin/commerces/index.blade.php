@@ -207,8 +207,8 @@
                         </div>
                         <div class="form-group col-md-6">
                             <div class="controls">
-                                <label for="horario_cierre">Horario de cierre</label>
-                                <input type="time" class="form-control" id="horario_cierre" name="horario_cierre"
+                                <label for="hora_cierre">Horario de cierre</label>
+                                <input type="time" class="form-control" id="hora_cierre" name="hora_cierre"
                                     placeholder="Despedida" required
                                     data-validation-required-message="El campo despedida es obligatorio" />
                             </div>
@@ -229,6 +229,73 @@
                                     required data-validation-required-message="El campo despedida es obligatorio" />
                             </div>
                         </div>
+                        <div class="row">
+                            {{-- calle
+numero_interior
+numero_exterior
+city
+state
+country
+latitud
+longitud --}}
+                            <div class="form-group col-md-12">
+                                <div class="controls">
+                                    <label for="calle">Calle</label>
+                                    <input type="text" class="form-control" id="calle" name="calle"
+                                        placeholder="grove st" required
+                                        data-validation-required-message="El campo calle es obligatorio" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="controls">
+                                    <label for="numero_exterior">Numero exterior</label>
+                                    <input type="text" class="form-control" id="numero_exterior" name="numero_exterior" placeholder="Despedida"
+                                        required data-validation-required-message="El campo despedida es obligatorio" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="controls">
+                                    <label for="numero_interior">Numero interior</label>
+                                    <input type="text" class="form-control" id="numero_interior" name="numero_interior" placeholder="Despedida"
+                                        required data-validation-required-message="El campo despedida es obligatorio" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="controls">
+                                    <label for="city">Ciudad o municipio</label>
+                                    <input type="text" class="form-control" id="city" name="city" placeholder="Despedida"
+                                        required data-validation-required-message="El campo despedida es obligatorio" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="controls">
+                                    <label for="state">Estado</label>
+                                    <input type="text" class="form-control" id="state" name="state" placeholder="Despedida"
+                                        required data-validation-required-message="El campo despedida es obligatorio" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="controls">
+                                    <label for="country">Pais</label>
+                                    <input type="text" class="form-control" id="country" name="country" placeholder="Despedida"
+                                        required data-validation-required-message="El campo despedida es obligatorio" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="controls">
+                                    <label for="latitud">Latitud</label>
+                                    <input type="text" class="form-control" id="latitud" name="latitud" placeholder="Despedida"
+                                        />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="controls">
+                                    <label for="longitud">Longitud</label>
+                                    <input type="text" class="form-control" id="longitud" name="longitud" placeholder="Despedida"
+                                        />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -242,7 +309,7 @@
     <!-- /.card -->
     @endsection
     @section('footer_script')
-    <script src="{{ asset('vendor/stringToSlug/jquery.stringToSlug.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/stringToSlug/jquery.stringToSlug.min.js') }}"></script> --}}
     <script type="text/javascript">
         $("#modal-commerce-view").on("show.bs.modal", function (e) {
             var button = $(e.relatedTarget);

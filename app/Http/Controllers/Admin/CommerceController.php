@@ -231,67 +231,65 @@ class CommerceController extends Controller
 
         $userid = Auth::user()->id;
         //if (!$request->ajax()) return redirect('/');
+        $input = $request->all();
         $validator = Validator::make($request->all(), [
             'nombre' => 'required',           
-            'description' => 'required',
-            'commerce_slug' => 'required'
+            'descripcion' => 'required',
+            'slug' => 'required'
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
         //Insertar valores de  negocio
-        $commercelocation = new Location();
-        //$commercelocation = Location::create($request->all()); 
-        $commercelocation->calle = $request->calle;
-        $commercelocation->numero_interior = $request->numero_interior;
-        $commercelocation->numero_exterior = $request->numero_exterior;
-        $commercelocation->city = $request->city;
-        $commercelocation->state = $request->state;
-        $commercelocation->country = $request->country;
-        $commercelocation->latitud = $request->latitude;
-        $commercelocation->longitud = $request->longitude;
+        //$commercelocation = new Location();
+        $commercelocation = Location::create([
+            'calle' => $input['calle'],
+            'numero_interior' => $input['numero_interior'],
+            'numero_exterior' => $input['numero_exterior'],
+            'city' => $input['city'],
+            'state' => $input['state'],
+            'country' => $input['country'],
+            'latitud' => $input['latitud'],
+            'longitud' => $input['longitud'],
 
-        $commercelocation->save();
-
-        $commerce = new Commerce();
-
-        $commerce->nombre = $request->nombre;
-        $commerce->slug = $request->commerce_slug;
-        $commerce->descripcion = $request->descripcion;
-        $commerce->hora_apertura = $request->hora_apertura;
-        $commerce->hora_cierre = $request->hora_cierre;
-        $commerce->num_telefono = $request->num_telefono;
-        $commerce->email = $request->email;
-        $commerce->condition = $request->condition;
-        $commerce->ubicacion_id = $request->$commercelocation->ubicacion_id;
-        $commerce->save();
-        //$commerce = Commerce::create($request->all()); 
-        //Relacion usuario-negocio
-        $commerceuser = CommerceUser::create([
-            //'id' => request('commerceuserid'),
-            'commerce_id' => $commerce->id, //commerce->id
-            'user_id' => $userid
         ]);
-        $commercerole = CommerceRole::create([
-            //'id' => request('commerceroleid'),
-            'commerce_id' =>  $commerce->id, //commerce->id
-            'role_id' => 1 //owner in role table
-        ]);
-        $commerceroleuser = CommerceRoleUser::create([
-            'commerce_user_id' => $commerceuser->id, //commerce->id
-            'commerce_role_id' => $commercerole->id //in commerce_role table
-            /*
-            Se crea una relacion que indica que un comercio puede tener un grupo 
-            de usuarios con disintos roles
-             */
-        ]);
-
-        if ($request->file('image')) {
-            $path = Storage::disk('public')->put('image',  $request->file('image'));
-            $commerce->fill(['file' => asset($path)])->save();
-        }
+        $commerce = Commerce::create([
+            'nombre' => $input['nombre'],
+            'slug' => $input['slug'],
+            'descripcion' => $input['descripcion'],
+            'hora_apertura' => $input['hora_apertura'],
+            'hora_cierre' => $input['hora_cierre'],
+            'num_telefono' => $input['num_telefono'],
+            'email' => $input['email'],
+            'condition' => 1,
+            'ubicacion_id' => $commercelocation->id,
+            ]);
+            //Relacion usuario-negocio
+            $commerceuser = CommerceUser::create([
+                //'id' => request('commerceuserid'),
+                'commerce_id' => $commerce->id, //commerce->id
+                'user_id' => $userid
+            ]);
+            $commercerole = CommerceRole::create([
+                //'id' => request('commerceroleid'),
+                'commerce_id' =>  $commerce->id, //commerce->id
+                'role_id' => 1 //owner in role table
+            ]);
+            $commerceroleuser = CommerceRoleUser::create([
+                'commerce_user_id' => $commerceuser->id, //commerce->id
+                'commerce_role_id' => $commercerole->id //in commerce_role table
+                /*
+                Se crea una relacion que indica que un comercio puede tener un grupo 
+                de usuarios con disintos roles
+                 */
+            ]);
+     
+            if ($request->file('image')) {
+                $path = Storage::disk('public')->put('image',  $request->file('image'));
+                $commerce->fill(['file' => asset($path)])->save();
+            }
+        
     }
     public function update(Request $request)
     {

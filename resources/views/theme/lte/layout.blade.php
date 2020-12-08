@@ -263,24 +263,27 @@
 <script type="text/javascript" src="{{asset('js/adminlte.min.js')}}"></script>
 <script src="{{asset("assets/js/jquery-nestable/jquery.nestable.js")}}" type="text/javascript"></script> 
 <script src="{{asset("assets/pages/scripts/admin/menu/index.js")}}" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"> </script>
+
+<script src="{{asset('vendor/stringToSlug/jquery.stringToSlug.min.js')}}"></script>
+<script src="{{asset('vendor/jquery-form-validation-1.5.3/dist/jquery.validation.min.js')}}"></script>
+<script src="{{asset('vendor/jqBootstrapValidation/jqBootstrapValidation.js')}}"></script>
+<script src="{{ asset('js/plantilla.js') }}"></script>
 @yield('footer_script')
 
 @section("scripts")
-
-<script src="{{asset('vendor/stringToSlug/jquery.stringToSlug.min.js')}}"></script>
  <script src="{{asset('js/app.js')}}"></script>
 
 
-<script src="{{asset ("assets/lte/plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+{{-- <script src="{{asset ("assets/lte/plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script> --}}
 {{-- <script src="{{asset ("assets/lte/plugins/jquery/jquery.min.js")}}"></script> --}}
 
 <!--Plugins de validation-->
-<script src="{{asset("assets/js/jqery-validation/core.js")}}"></script>
-<script src="{{asset("assets/js/jqery-validation/localization/messages_es.js")}}"></script>
+{{-- <script src="{{asset("assets/js/jqery-validation/core.js")}}"></script> --}}
+{{-- <script src="{{asset("assets/js/jqery-validation/localization/messages_es.js")}}"></script> --}}
 
 <script src="{{asset("js/jquery.nestable.js")}}"></script>
-<script src="{{asset ("assets/lte/plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+
 <!-- Bootstrap 4 -->
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

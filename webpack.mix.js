@@ -22,12 +22,6 @@ const mix = require('laravel-mix');
     'node_modules/admin-lte/docs_html/assets/css/highlighter.css',
 ],'public/css/lte-template.css')
 
-.js([ 
-'node_modules/admin-lte/plugins/sparklines/sparkline.js', 
-    'node_modules/admin-lte/dist/js/adminlte.min.js',
-    ],'public/js/adminlte.min.js')
-    .js(['node_modules/admin-lte/plugins/jquery/jquery.min.js',],'public/js/jquery.min.js')
-
 
     .scripts([
         'resources/plantilla/js/jquery-nestable/jquery.nestable.js',
@@ -37,7 +31,6 @@ const mix = require('laravel-mix');
         'public/assets/pages/scripts/admin/index.js',
         'public/vendor/stringToSlug/jquery.stringToSlug.min.js',
 
-        'resources/plantilla/js/plugins/jquery/jquery.min.js',
         'resources/plantilla/js/plugins/bootstrap/js/bootstrap.bundle.min.js',
         'resources/plantilla/js/plugins/fastclick/fastclick.js',
         'resources/plantilla/css/lte/dist/js/adminlte.min.js',
