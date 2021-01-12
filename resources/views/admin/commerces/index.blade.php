@@ -31,83 +31,48 @@
         </div>
         @guest
         @else
-        {{-- <div class="card-tool pull-right">
-            <a href="{{ route('commerces.create') }}" class="btn btn-block btn-info btn-sm">
-        <i class="fa fa-fw fa-plus-circle"></i> Agregar commerce
-        </a>
-    </div> --}}
+
     <button type="button" class="btn btn-outline-dark mr-2" data-toggle="modal" data-target="#modal-commerce-view"
         data-method="create">
         <i class="fe fe-plus"></i> Nuevo
     </button>
     @endguest
 </div>
-<div class="card-body">
-    {{-- <div class="col-md-12">
-        <div class="card mb-3 mt-3" v-for="item in list" :key="commerce.id">
-            <a class="card_header" v-bind:href="item.slug" v-text="item.nombre"></a>
-            <div class="card-body">
-                <p class="card-text" v-text="item.descripcion"></p>
-            </div>
-        </div>
-    </div> --}}
+<div>
+
     <section class="content">
 
-        <div class="flex-container">
-
+       {{--  <div class="flex-container"> --}}
+<div class="row">
             @foreach ($commerces as $commerce)
             <!-- /.col -->
-            <div class="card col-md-3" style=" background-color: #058">
-                <!-- Widget: user widget style 1 -->
-                <div class="card card-widget widget-user">
-                    <a class="topcard" href="{{ route('commerce_show', $commerce->commerce_id) }}">
-                        <h3 class="widget-user-username">{{ $commerce->nombre }}</h3>
-                    </a>
 
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="widget-user-header bg-black">
-                        <div class="row widget-user-image">
-
-                            {{-- <img class="img-circle"  src="{{ $commerce->file }}" alt="User Avatar"> --}}
-                            <img class="img-circle" src="https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"
-                                alt="User Avatar">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row border-top top-card">
-                        <div class="col-sm-12">
-                            <h5 class="widget-user-desc">{{ $commerce->descripcion }}</h5>
-                        </div>
-                    </div>
-                    <div class="row card-footer border-top">
-                        <div class="col-sm-6 border-right">
-                            <div class="description-block">
-                                <h5 class="description-header">{{ $commerce->hora_apertura }}</h5>
-                                {{-- <span class="description-text">Abrimos a:</span> --}}
-                                <h6 class="description-text">Abrimos a:</h6>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                            <div class="description-block">
-                                <h5 class="description-header">{{ $commerce->hora_cierre }}</h5>
-                                <h6 class="description-text">Cerramos a:</h6>
-                            </div>
-                            <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-
-                <!-- /.widget-user -->
-            </div>
             <!-- /.col -->
+            <div class="col-sm-6 col-md-3 col-lg-4 shadow p-3 mb-5 rounded">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <a href="{{ route('commerce_show', $commerce->commerce_id) }}">
+                            <h3 class="align-middle"data-placement="top" title="{{ $commerce->nombre }}"
+                             style =" overflow: hidden;
+                            white-space: nowrap;display: block;
+                            text-overflow: ellipsis;"data-toggle="tooltip" >{{ $commerce->nombre }}</h3>
+                        </a>
+                      </div>
+                <div class="card-body">
+                    <div class="text-center" style="height:99px;">
+                        <img   class="img-circle" style="height:100px;" src="{{$commerce->file}}" alt="img">
+                      </div>
 
+                    <p class="card-text align-middle"  style="height:60px; max-height:60px;" >{{ $commerce->descripcion }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row text-center">
+                        <div class="col border-right">{{ $commerce->hora_apertura }}</div>
+                        <div class="col border-left">{{ $commerce->hora_cierre }}</div>
+                    </div>
+                </div>
+                </div>
+            </div>
 
             @endforeach
         </div>
@@ -143,35 +108,6 @@
                                         data-default-file="" data-allowed-file-extensions="jpg jpeg png bmp svg gif"
                                         data-max-file-size-preview="8M"/>
                             </div>
-                        </div>
-                        <div class="row">
-                            {{-- <div class="form-group col-md-3">
-                                <div class="controls">
-                                    <label for="role_id">Role ID</label>
-                                    <input type="text" class="form-control" id="role_id" name="role_id"
-                                        placeholder="Titulo" required
-                                        data-validation-required-message="El campo titulo es obligatorio" />
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <div class="controls">
-                                    <label for="commerceuserid">CommerceuserID</label>
-                                    <input type="text" class="form-control" id="commerceuserid" name="commerceuserid"
-                                        placeholder="Titulo" required
-                                        data-validation-required-message="El campo titulo es obligatorio" />
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <div class="controls">
-                                    <label for="commerceroleid">CommerceRoleID</label>
-                                    <input type="text" class="form-control" id="commerceroleid" name="commerceroleid"
-                                        placeholder="Titulo" required
-                                        data-validation-required-message="El campo titulo es obligatorio" />
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                
-                            </div> --}}
                         </div>
 
                         <div class="form-group col-md-12">
@@ -230,14 +166,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            {{-- calle
-numero_interior
-numero_exterior
-city
-state
-country
-latitud
-longitud --}}
                             <div class="form-group col-md-12">
                                 <div class="controls">
                                     <label for="calle">Calle</label>
@@ -299,8 +227,7 @@ longitud --}}
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="this.form.reset();"
-                        id="close">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="this.form.reset();" id="close">Cerrar</button>
                     <button type="submit" class="btn btn-primary" id="save">Guardar</button>
                 </div>
             </form>
@@ -309,7 +236,7 @@ longitud --}}
     <!-- /.card -->
     @endsection
     @section('footer_script')
-    {{-- <script src="{{ asset('vendor/stringToSlug/jquery.stringToSlug.min.js') }}"></script> --}}
+
     <script type="text/javascript">
         $("#modal-commerce-view").on("show.bs.modal", function (e) {
             var button = $(e.relatedTarget);

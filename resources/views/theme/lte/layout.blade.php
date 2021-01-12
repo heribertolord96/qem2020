@@ -201,7 +201,10 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             @include("menu_admin.menu_explorar")
         </ul>
-    </nav>
+        
+        
+      </nav>
+      @yield('menucommerce')
    @endguest
     </div>
     <!-- /.sidebar -->

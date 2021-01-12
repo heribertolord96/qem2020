@@ -14,6 +14,9 @@
             </button>
          </div>
       </div>
+      @section('menucommerce')
+          @include('menu_admin.menu_commerce')
+      @endsection
       <!--div class="card-tools pull-right">
          <button type="button" class="btn btn-card-tool" >
          <a  href="">

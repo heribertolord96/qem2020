@@ -1,11 +1,6 @@
 <!-- Main Sidebar Container -->
-{{-- <header class="main-header">
-    @include("theme/$theme/nav")
-</header> --}} @include("theme/$theme/nav")
+@include("theme/$theme/nav")
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!--Inicio-nav-->
-
-    <!--fin-nav-->
     <!-- Brand Logo -->
     <a href="/main" class="brand-link">
         <img src="{{ asset('assets/lte/img/quickemart (2).png') }}" alt="QEM" class="brand-image img-circle elevation-3"

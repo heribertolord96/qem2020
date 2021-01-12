@@ -35,6 +35,10 @@ class CommerceController extends Controller
         $this->middleware('auth');
     }
 
+    public function dashboard(){
+        return view('admin.commerces.dashboard');
+    }
+
     public function index(Request $request)
     {
         $user =  Auth::user()->id;
@@ -70,7 +74,7 @@ class CommerceController extends Controller
             return view('admin.commerces.index', compact('commerces'));
         } else {
             $commerces = Commerce::orderBy('commerces.nombre', 'asc')
-                ->join('locations', 'commerces.ubicacion_id', '=', 'locations.id')                
+                ->join('locations', 'commerces.ubicacion_id', '=', 'locations.id')
                 ->select(
                     'commerces.id as commerce_id',
                     'commerces.nombre',
@@ -171,7 +175,7 @@ class CommerceController extends Controller
         return view('admin.commerces.create',  compact('roles'));
     }
 
-    
+
     //show  commerces from commerces.index
     public function show($id)
     {
@@ -195,10 +199,10 @@ class CommerceController extends Controller
     }*/
     //show  commerce
 
-  
+
     public function edit($id)
     {
-        $roles = 1; //==owner   
+        $roles = 1; //==owner
         $commerce = Commerce::find($id);
         return view('admin.commerces.edit', compact('commerce', 'roles'));
     }
@@ -219,7 +223,7 @@ class CommerceController extends Controller
         $commerce->save();
     }
 
-    
+
     public function destroy($id)
     {
         $commerce = Commerce::find($id)->delete();
@@ -233,7 +237,7 @@ class CommerceController extends Controller
         //if (!$request->ajax()) return redirect('/');
         $input = $request->all();
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required',           
+            'nombre' => 'required',
             'descripcion' => 'required',
             'slug' => 'required'
         ]);
@@ -280,16 +284,16 @@ class CommerceController extends Controller
                 'commerce_user_id' => $commerceuser->id, //commerce->id
                 'commerce_role_id' => $commercerole->id //in commerce_role table
                 /*
-                Se crea una relacion que indica que un comercio puede tener un grupo 
+                Se crea una relacion que indica que un comercio puede tener un grupo
                 de usuarios con disintos roles
                  */
             ]);
-     
+
             if ($request->file('image')) {
                 $path = Storage::disk('public')->put('image',  $request->file('image'));
                 $commerce->fill(['file' => asset($path)])->save();
             }
-        
+
     }
     public function update(Request $request)
     {
@@ -342,7 +346,7 @@ class CommerceController extends Controller
         return ['commerceuserid' => $commerceuserid];
     }*/
     //change methods
-   
+
 
     /*public function department(): JsonResponse
     {
@@ -381,11 +385,11 @@ class CommerceController extends Controller
                 'products.id as product_id',
                 'products.descripcion as product_description',
                 'products.presentacion as product_presentation',
-                'products.precio_venta',                
+                'products.precio_venta',
                 'products.condition as product_condition',
                 'commerces.nombre as commerce_product'
-            ) 
-            ->get();      
+            )
+            ->get();
             //->paginate(10);
              return response()->json($products);
 /*
@@ -415,7 +419,7 @@ class CommerceController extends Controller
             ->where('name', '%'. $buscar . '%')
             //->get();
             ->paginate(10);
-           
+
             return response()->json([
                 'pagination' => [
                     'total'        => $products->total(),
@@ -427,9 +431,9 @@ class CommerceController extends Controller
                 ],
                 'products' => response()->json($products)
             ]);
-        }        
-       
+        }
+
     }
-   
-    
+
+
 }
